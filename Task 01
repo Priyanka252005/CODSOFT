@@ -1,0 +1,25 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Random random = new Random();
+	    Scanner sc = new Scanner(System.in);
+	    
+		System.out.print("Enter a Number : ");
+		int num = sc.nextInt();
+		while(true) {
+		    int randomNum = random.nextInt(100);
+		    System.out.print(randomNum + " ");
+    		if(num < randomNum) {
+    		    System.out.println(" number is too low");
+    		}
+    		else if(num > randomNum) {
+    		    System.out.println(" number is too high");
+    		}
+    		else {
+    		    System.out.println("Correct");
+    		    break;
+    		}
+		}
+	}
+}
