@@ -1,0 +1,116 @@
+
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    Scanner sc = new Scanner(System.in);
+	    ATM atm = new ATM();
+	    atm.loadAmount(100000);
+	    System.out.print("Enter User Account Number : ");
+	    int userAccNo = sc.nextInt();
+	   // System.out.println();
+	    System.out.print("Enter User Name : ");
+	    String userName = sc.next();
+	    User user = new User(userAccNo, userName);
+	   // user.deposit(1000);
+	    
+	    while(true) {
+	        System.out.println("Task 1 - Deposit");
+	        System.out.println("Task 2 - withdraw");
+	        System.out.println("Task 3 - Chech Balance");
+	        System.out.println("Task 4 - Exit");
+	        System.out.print("Enter a Task : ");
+	        int task = sc.nextInt();
+	        int f = 0;
+	        switch(task) {
+    	        case 1:
+    	            System.out.print("Enter how much money do you want to deposit : ");
+    	            int amount = sc.nextInt();
+    	            System.out.println(user.deposit(amount));
+    	            break;
+    	       case 2:
+    	            System.out.print("Enter how much money do you want to withdraw : ");
+    	            int money = sc.nextInt();
+    	            System.out.println(user.withdraw(money));
+    	            break;
+    	       case 3:
+    	           System.out.print("The Balance : ");
+    	           System.out.println(user.checkBalance());
+    	           break;
+    	       case 4:
+    	           f = 1;
+    	           break;
+    	       default:
+    	            System.out.print("Invalid");
+    	            break;
+	        }
+	        if(f == 1) {
+	            break;
+	        }
+	    }
+	    
+		
+	}
+}
+
+class ATM {
+
+    
+    int Balance;
+    
+    public void loadAmount(int amount) {
+        this.Balance = amount; 
+    }
+    public void withdraw(int amount) {
+        if(this.Balance - amount < 0) {
+            System.out.print("Amount Not Sufficience");
+        }
+        else 
+            this.Balance -= amount;
+    }
+    
+    public void deposit(int amount) {
+        this.Balance += amount;
+    }
+    
+    public int checkBalance() {
+        return this.Balance;
+    }
+}
+
+class User {
+    int AccNo;
+    String UserName;
+    int Balance;
+    
+    User(int AccNo, String UserName) {
+        this.AccNo = AccNo;
+        this.UserName = UserName;
+    }
+    
+    public int withdraw(int amount) {
+        if(this.Balance - amount < 0) {
+            System.out.print("Amount Not Sufficience");
+            return 0;
+        }
+        else 
+            System.out.print("The Amount withdrawed : ");
+            this.Balance -= amount;
+            return amount;
+            
+            
+    }
+    
+    public int deposit(int amount) {
+        System.out.print("The Amount Deposit : ");
+        this.Balance += amount;
+        return this.Balance;
+    }
+    
+    public int checkBalance() {
+        return this.Balance;
+    }
+    
+}
